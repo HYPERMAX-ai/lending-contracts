@@ -1,19 +1,25 @@
-# Address
+# Lending
 
-```
-JumpRateModel: 0x26FcbEee95d5DC1cCec1bb82C0776C5A0486723b
+Compound-based lending markets, powered by an upgradeable `Comptroller` and a `PriceOracle` that talks to the HyperCore precompile.
 
-comptroller: 0xB80Edb22552214184ee8b5FdD2983a4dAc26e229
+```mermaid
+flowchart LR
+  subgraph HyperEVM
+    Comp <-- get price --> O[PriceOracle]
+  end
 
-priceOracle: 0x46CD5C1a22e7C33A82A91003dAA3702EDeE321f4
+  subgraph HyperCore
+    P[Price]
+  end
+
+  O <-- get price --> P
 ```
 
-```
-cHYPE: 0x62C64dF023535DaB52B584270c5a606eAFc334Af
-cUBTC: 0xC3d2Fa5dF9C01E18Cf6B80ce91966aC3772130a8
-cUETH: 0xd5a3197eecd3b98c4a01fc9ac89d15f08e352f90
-```
+`SpotPriceOracle.sol`
+- Wraps a single staticcall to the HyperCore mark-price precompile so on-chain prices stay in sync with the L1 engine
 
-```
-Maximillion: 0x53c26CF270fD51213De7aA6b356e4E2d306E916d
-```
+---
+
+# Script
+
+Deploy everything with `deploy.js`.
