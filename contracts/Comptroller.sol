@@ -9,6 +9,8 @@ import "./ComptrollerStorage.sol";
 import "./Unitroller.sol";
 import "./Governance/Comp.sol";
 
+import {Initializable} from "./Upgradeable/Initializable.sol";
+
 /**
  * @title Compound's Comptroller Contract
  * @author Compound
@@ -17,7 +19,8 @@ contract Comptroller is
     ComptrollerV3Storage,
     ComptrollerInterface,
     ComptrollerErrorReporter,
-    Exponential
+    Exponential,
+    Initializable
 {
     /// @notice Emitted when an admin supports a market
     event MarketListed(CToken cToken);
@@ -111,7 +114,10 @@ contract Comptroller is
     // liquidationIncentiveMantissa must be no greater than this value
     uint internal constant liquidationIncentiveMaxMantissa = 1.5e18; // 1.5
 
-    constructor() public {
+    // constructor() public {
+    //     admin = msg.sender;
+    // }
+    function initialize() public initializer {
         admin = msg.sender;
     }
 
