@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^2.5.0",
+    "@openzeppelin/hardhat-upgrades": "^3.9.0",
     "eth-saddle": "^0.1.17",
     "hardhat": "^2.22.19"
   },
